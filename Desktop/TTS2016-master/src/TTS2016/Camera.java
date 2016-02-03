@@ -102,9 +102,9 @@ GameCanvas
 
      
 
-      this.mapHeight = this.numTilesX * this.tileWidth;
+      this.mapWidth = this.numTilesX * this.tileWidth;
 
-      this.mapWidth = this.numTilesY * this.tileHeight;
+      this.mapHeight = this.numTilesY * this.tileHeight;
 
      
 
@@ -146,9 +146,7 @@ on the screen
 
       if(cameraX < 0) cameraX = 0;
 
-      if(cameraX + gc.getWidth() > mapWidth) cameraX = mapWidth -
-
-gc.getWidth();
+      if(cameraX + gc.getWidth() > mapWidth) cameraX = mapWidth - gc.getWidth();
 
      
 
@@ -156,9 +154,7 @@ gc.getWidth();
 
       if(cameraY < 0) cameraY = 0;
 
-      if(cameraY + gc.getHeight() > mapHeight) cameraY = mapHeight -
-
-gc.getHeight();
+      if(cameraY + gc.getHeight() > mapHeight) cameraY = mapHeight - gc.getHeight();
 
    }
 

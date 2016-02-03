@@ -61,9 +61,9 @@ public class Butler {
 
     int MapHeight = 100;
 
-    double rightlimit = (MapWidth * SIZE) - (SIZE * 0.75);
+    //double rightlimit = (MapWidth * SIZE) - (SIZE * 0.75);
 
-    double downlimit = (MapHeight * SIZE) - (SIZE * 0.75);
+   // double downlimit = (MapHeight * SIZE) - (SIZE * 0.75);
 
     private boolean icangoup;
 
@@ -263,9 +263,7 @@ public class Butler {
         int yBlock = (int) (ycheck / SIZE);
 
 
-        if ((xBlock < MapWidth && yBlock < MapHeight) && (xBlock > 0
-
-                && yBlock > 0)) {
+        if ((xBlock < MapWidth && yBlock < MapHeight) && (xBlock > 0 && yBlock > 0)) {
 
 
             // System.out.println("Am I blocked ? " + Blockedblocked[xBlock][yBlock] );
@@ -459,11 +457,6 @@ public class Butler {
     void move() throws SlickException {
 
         //float fdelta = 18 * 0.1f;
-
-        
-
-        if (true){
-
         if (this.Bx > Player.getplayersX()) {
 
             this.moveleft();
@@ -479,7 +472,7 @@ public class Butler {
 
         } else {//System.out.println("I can't move left or right. My x is " + this.Bx + " and my Y is " + this.By);
 
-        }
+        
 
 
         if (this.By > Player.getplayersY()) {
@@ -516,9 +509,7 @@ public class Butler {
 
         }
 
-    } else {this.currentanime = skdead;}
-
-    }
+        }}
 
     
 

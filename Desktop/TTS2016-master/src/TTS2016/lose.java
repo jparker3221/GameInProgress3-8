@@ -149,9 +149,22 @@ public class lose extends BasicGameState {
                 Player.health  = 100000;
                 Player.speed = .4f;
                 TTS2016.counter = 0;
-                Itemwin.isvisible = true;
                 Player.x = 2525f;
                 Player.y = 1200f;
+                TTS2016.candy1.isvisible = true;
+                TTS2016.candy2.isvisible = true;
+                TTS2016.soda1.isvisible = true;
+                TTS2016.soda2.isvisible = true;
+                TTS2016.destroyable1a.isvisible = true;
+                TTS2016.destroyable1b.isvisible = true;
+                TTS2016.destroyable1c.isvisible = true;
+                TTS2016.destroyable1d.isvisible = true;
+                TTS2016.destroyable1e.isvisible = true;
+                TTS2016.destroyable2a.isvisible = true;
+                TTS2016.destroyable2b.isvisible = true;
+                TTS2016.destroyable2c.isvisible = true;
+                TTS2016.destroyable2d.isvisible = true;
+                TTS2016.destroyable2e.isvisible = true;
                 //redo potions and reset cordinates of player
                 game.enterState(1, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 

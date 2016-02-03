@@ -49,69 +49,9 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.tiled.TiledMap;
 import org.w3c.dom.css.Rect;
 
-class Item {
-
-    public int x;
-    public int y;
-    public boolean isvisible = true;
-    Image currentImage;
-    Shape hitbox;
-    Image healthpotion = new Image(
-            "res/health_potion.png");
-
-    Item(int a, int b) throws SlickException {
-        this.x = a;
-        this.y = b;
-        this.hitbox = new Rectangle(a, b, 32, 32);// 64 is the width of the item
-        this.currentImage = healthpotion;
-
-    }
-
-}
-
-class Item1 {
-
-    public int x;
-    public int y;
-    public boolean isvisible = true;
-    Image currentImage;
-    Shape hitbox;
-    Image healthpotion = new Image("res/speed_potion.png");
-
-    Item1(int a, int b) throws SlickException {
-        this.x = a;
-        this.y = b;
-        this.hitbox = new Rectangle(a, b, 32, 32);// 64 is the width of the item
-        this.currentImage = healthpotion;
-
-    }
-
-}
-
-class Itemwin {
-
-    public int x;
-    public int y;
-    public static boolean isvisible = true;
-    Image currentImage;
-    Shape hitbox;
-    Image antidote = new Image("res/antidote.png");
-
-    Itemwin(int a, int b) throws SlickException {
-        this.x = a;
-        this.y = b;
-        this.hitbox = new Rectangle(a, b, 32, 32);// 64 is the width of the item
-        this.currentImage = antidote;
-
-    }
-
-}
-
 public class TTS2016 extends BasicGameState {
 
-    public Item healthpotion, healthpotion1;
-    public Item1 speedpotion, speedpotion1;
-    public Itemwin antidote;
+    
     public static Candy candy1, candy2;
     public static Soda soda1, soda2;
     public Maid Mary, Esperanza;
@@ -120,12 +60,6 @@ public class TTS2016 extends BasicGameState {
             destroyable1d, destroyable1e;
     public static Destroyable2 destroyable2a, destroyable2b, destroyable2c,
             destroyable2d, destroyable2e;
-
-    public ArrayList<Item> stuff = new ArrayList();
-
-    public ArrayList<Item1> stuff1 = new ArrayList();
-
-    public ArrayList<Itemwin> stuffwin = new ArrayList();
 
     public ArrayList<Candy> Candyshop = new ArrayList();
 
@@ -183,7 +117,7 @@ public class TTS2016 extends BasicGameState {
         grassMap = new TiledMap("res/Mansion.tmx");
 
         // Ongoing checks are useful
-        System.out.println("Tile map is this wide: " + grassMap.getWidth());
+        //System.out.println("Tile map is this wide: " + grassMap.getWidth());
 
         camera = new Camera(gc, grassMap);
 
@@ -313,8 +247,8 @@ public class TTS2016 extends BasicGameState {
         // You could also use this for planning traps, etc.
         // System.out.println("Number of tile layers: "
         // +grassMap.getLayerCount());
-        System.out.println("The grassmap is " + grassMap.getWidth() + "by "
-                + grassMap.getHeight());
+        //System.out.println("The grassmap is " + grassMap.getWidth() + "by "
+               // + grassMap.getHeight());
 
         
         for (int xAxis = 0; xAxis < grassMap.getWidth(); xAxis++) {
@@ -333,8 +267,8 @@ public class TTS2016 extends BasicGameState {
 
                 if ("true".equals(value)) {
 
-                    System.out.println("The tile at x " + xAxis + " andy axis "
-                            + yAxis + " is blocked.");
+                    //System.out.println("The tile at x " + xAxis + " andy axis "
+                            //+ yAxis + " is blocked.");
 
                     Blocked.blocked[xAxis][yAxis] = true;
 
@@ -359,8 +293,8 @@ public class TTS2016 extends BasicGameState {
 
                 if ("true".equals(value)) {
 
-                    System.out.println("The tile at x " + xAxis + " andy axis "
-                            + yAxis + " is blocked.");
+                    //System.out.println("The tile at x " + xAxis + " andy axis "
+                      //      + yAxis + " is blocked.");
 
                     Blocked.blocked[xAxis][yAxis] = true;
 
@@ -370,40 +304,12 @@ public class TTS2016 extends BasicGameState {
 
         }
 
-        System.out.println("Array length" + Blocked.blocked[0].length);
+       // System.out.println("Array length" + Blocked.blocked[0].length);
 
         // A remarkably similar process for finding hostiles
         hostiles = new boolean[grassMap.getWidth()][grassMap.getHeight()];
 
-        for (int xAxis = 0; xAxis < grassMap.getWidth(); xAxis++) {
-            for (int yAxis = 0; yAxis < grassMap.getHeight(); yAxis++) {
-                int xBlock = (int) xAxis;
-                int yBlock = (int) yAxis;
-                if (!Blocked.blocked[xBlock][yBlock]) {
-                    if (yBlock % 7 == 0 && xBlock % 15 == 0) {
-                        Item i = new Item(xAxis * SIZE, yAxis * SIZE);
-                        stuff.add(i);
-                        //stuff1.add(h);
-                        hostiles[xAxis][yAxis] = true;
-                    }
-                }
-            }
-        }
-
-        for (int xAxis = 0; xAxis < grassMap.getWidth(); xAxis++) {
-            for (int yAxis = 0; yAxis < grassMap.getHeight(); yAxis++) {
-                int xBlock = (int) xAxis;
-                int yBlock = (int) yAxis;
-                if (!Blocked.blocked[xBlock][yBlock]) {
-                    if (xBlock % 9 == 0 && yBlock % 25 == 0) {
-                        Item1 h = new Item1(xAxis * SIZE, yAxis * SIZE);
-                        //	stuff.add(i);
-                        stuff1.add(h);
-                        hostiles[xAxis][yAxis] = true;
-                    }
-                }
-            }
-        }
+        
 
        // healthpotion = new Item(100, 100);
         //healthpotion1 = new Item(450, 400);
@@ -422,12 +328,12 @@ public class TTS2016 extends BasicGameState {
         Sodashop.add(soda1);
         Sodashop.add(soda2);
         Mary = new Maid(125, 750);
-        Esperanza = new Maid(125, 755);
-        Thomas = new Butler(130,750);
-        Alfred = new Butler(130,755);
-        //Esperanza = new Maid(6200, 825);
-        //Thomas = new Butler(3350,600);
-        //Alfred = new Butler(4350,710);
+        //Esperanza = new Maid(125, 755);
+        //Thomas = new Butler(130,750);
+        //Alfred = new Butler(130,755);
+        Esperanza = new Maid(6200, 825);
+        Thomas = new Butler(3350,600);
+        Alfred = new Butler(4350,710);
         brushes.add(Mary);
         brushes.add(Esperanza);
         platters.add(Thomas);
@@ -470,7 +376,7 @@ public class TTS2016 extends BasicGameState {
         // System.out.println("Current X: " +player.x + " \n Current Y: "+ y);
         sprite.draw((int) Player.x, (int) Player.y);
 
-       g.drawString("x: " + (int)Player.x + " y: " +(int)Player.y , Player.x, Player.y - 10);
+       //g.drawString("x: " + (int)Player.x + " y: " +(int)Player.y , Player.x, Player.y - 10);
         g.drawString("Health: " + Player.health / 1000, camera.cameraX + 10,
                 camera.cameraY + 10);
 
@@ -558,7 +464,7 @@ public class TTS2016 extends BasicGameState {
 
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
             throws SlickException {
-        if(Player.counter>5){
+        if(Player.counter>9){
                     sbg.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
                 }
         counter += delta;
@@ -696,9 +602,9 @@ public class TTS2016 extends BasicGameState {
         }
         */
         for (Maid m : brushes) {
-            if (Math.abs(Player.x - m.Bx) < 576){
+           if (Math.abs(Player.x - m.Bx) < 576){
                 m.move();
-            }
+           }
         }
         
         for(Maid e : brushes){
@@ -706,7 +612,7 @@ public class TTS2016 extends BasicGameState {
                 //System.out.println("yay");
                 {
 
-                    //Player.health -= 150;
+                    Player.health -= 150;
                     
                 }
 
@@ -714,9 +620,9 @@ public class TTS2016 extends BasicGameState {
         }
         
         for (Butler b : platters){
-            if (Math.abs(Player.x - b.Bx) < 512){
+           if (Math.abs(Player.x - b.Bx) < 512){
                 b.move();
-            }
+           }
         }
         
         for(Butler e : platters){
@@ -724,7 +630,7 @@ public class TTS2016 extends BasicGameState {
                 //System.out.println("yay");
                 {
 
-                    //Player.speed -= .005f;
+                    Player.speed -= .005f;
                     
                 }
 
@@ -774,7 +680,7 @@ public class TTS2016 extends BasicGameState {
 
         Player.health -= counter / 1000;
         if (Player.health <= 0||Player.speed <= 0f) {
-            makevisible();
+            
             sbg.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
         }
 
@@ -786,7 +692,7 @@ public class TTS2016 extends BasicGameState {
 
     }
 
-    public void makevisible() {
+   /*public void makevisible() {
         for (Item1 h : stuff1) {
 
             h.isvisible = true;
@@ -797,7 +703,7 @@ public class TTS2016 extends BasicGameState {
             i.isvisible = true;
         }
     }
-
+*/
     private boolean isBlocked(float tx, float ty) {
 
         int xBlock = (int) tx / SIZE;
