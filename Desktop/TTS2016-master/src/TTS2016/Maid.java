@@ -85,7 +85,7 @@ public class Maid {
 
     float hitboxY = this.By + 8f;
 
-    public Shape rect;
+    public static Shape rect;
 
 
     //System.out.println("Right limit: " + rightlimit);

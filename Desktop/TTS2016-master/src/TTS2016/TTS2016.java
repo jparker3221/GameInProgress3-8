@@ -60,6 +60,7 @@ public class TTS2016 extends BasicGameState {
             destroyable1d, destroyable1e;
     public static Destroyable2 destroyable2a, destroyable2b, destroyable2c,
             destroyable2d, destroyable2e;
+    public static orb magic8ball, orb1;
 
     public ArrayList<Candy> Candyshop = new ArrayList();
 
@@ -360,6 +361,8 @@ public class TTS2016 extends BasicGameState {
         tables.add(destroyable2c);
         tables.add(destroyable2d);
         tables.add(destroyable2e);
+        magic8ball = new orb ((int) Player.x, (int) Player.y);
+        orb1 = new orb ((int) Player.x, (int) Player.y);
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -459,7 +462,9 @@ public class TTS2016 extends BasicGameState {
         }
         //stormy.currentImage.draw(stormy.x, stormy.y);
         //daniel.currentImage.draw(daniel.x, daniel.y);
-
+        if(magic8ball.isIsVisible()){
+            magic8ball.orbpic.draw(magic8ball.getLocationX(),magic8ball.getLocationY());
+        }
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
@@ -544,6 +549,13 @@ public class TTS2016 extends BasicGameState {
             } // else { System.out.println("Right limit reached: " +
             // rightlimit);}
 
+        }else if(input.isKeyDown(Input.KEY_SPACE)){
+            magic8ball.setLocationX((int)player.x));
+            magic8ball.setLocationY((int)player.y));
+            magic8ball.hitbox.setLocationX((int)orb1.getLocationX());
+            magic8ball.hitbox.setLocationY((int)orb1.getLocationY());
+            
+            
         }
 
         Player.rect.setLocation(Player.getplayershitboxX(),
@@ -683,7 +695,9 @@ public class TTS2016 extends BasicGameState {
             
             sbg.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
         }
-
+        if(magic8ball.hitbox.intersects(Maid.rect)){
+            Maid.isVisible = false;
+    }
     }
 
     public int getID() {
@@ -721,6 +735,14 @@ public class TTS2016 extends BasicGameState {
          }
         for(Butler b : platters){
             b.move();
+        }
+    }
+
+    
+
+    private static class player {
+
+        public player() {
         }
     }
     
