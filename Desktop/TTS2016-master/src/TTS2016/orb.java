@@ -12,14 +12,27 @@ public class orb {
    private boolean isVisible;
    Image orbpic;
    Shape hitbox;
+   private int x, y;
+   
+   
    public orb(int x, int y) throws SlickException{
        this.isVisible= false;
        this.locationX = x;
        this.locationY = y;
-       this.orbpic = new Image ("res/orbs/Ninja_12.png");
+       this.orbpic = new Image ("res/car.png");
        this.hitbox = new Rectangle (x,y,32,32);
     } 
 
+   
+   public void setX(int a){
+       this.x = a;
+       
+   }
+   
+   public void setY(int a){
+       this.x = a;
+       
+   }
     public int getLocationX() {
         return locationX;
     }
@@ -69,9 +82,11 @@ public class orb {
     }
     
     public void setlocation(int a, int b){
-        this.setLocationX((int)Player.x+16);
-        this.setLocationY((int)Player.y-16);
+     //   this.setLocationX((int)Player.x+16);
+       // this.setLocationY((int)Player.y-16);
     }
+
+    
 /**
  * getters and setters are a common concept in java
  * a design guideline in java and oop in general

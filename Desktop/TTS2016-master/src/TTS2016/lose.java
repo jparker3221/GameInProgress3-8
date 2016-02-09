@@ -146,11 +146,11 @@ public class lose extends BasicGameState {
 
             case Input.KEY_1:
 
-                Player.health  = 100000;
-                Player.speed = .4f;
+             //   Player.health  = 100000;
+              //  Player.speed = .4f;
                 TTS2016.counter = 0;
-                Player.x = 2525f;
-                Player.y = 1200f;
+             //   Player.x = 2525f;
+             //   Player.y = 1200f;
                 TTS2016.candy1.isvisible = true;
                 TTS2016.candy2.isvisible = true;
                 TTS2016.soda1.isvisible = true;

@@ -146,12 +146,12 @@ public class win extends BasicGameState {
 
             case Input.KEY_1:
 
-                Player.health  = 100000;
-                Player.speed = .4f;
+              //  Player.health  = 100000;
+           //     Player.speed = .4f;
                 TTS2016.counter = 0;
-                Player.x = 2525f;
-                Player.y = 1200f;
-                Player.counter = 0;
+            //    Player.x = 2525f;
+          //      Player.y = 1200f;
+           //     Player.counter = 0;
                 
                 
                 //item.isvisible = true;

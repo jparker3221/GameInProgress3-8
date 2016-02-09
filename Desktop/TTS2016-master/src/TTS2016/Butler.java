@@ -18,6 +18,7 @@ import org.newdawn.slick.geom.Shape;
 public class Butler {
     
     private static int numberOfEnemies = 0;
+    static boolean isVisible;
 
     private int id;
 
@@ -281,7 +282,7 @@ public class Butler {
 
     private boolean canigoup() {
 
-        fdelta = Player.getpdelta();
+      //  fdelta = Player.getpdelta();
 
         return (!isBlocked(this.Bx, this.By - fdelta)
 
@@ -292,7 +293,7 @@ public class Butler {
 
     private boolean canigodown() {
 
-        fdelta = Player.getpdelta();
+      //  fdelta = Player.getpdelta();
 
         return ((!isBlocked(this.Bx, this.By + SIZE + 8)
 
@@ -320,7 +321,7 @@ public class Butler {
 
     private boolean canigoleft() {
 
-        fdelta = Player.getpdelta();
+     //   fdelta = Player.getpdelta();
 
         //if (!(!isBlocked(this.Bx - SIZE, this.By) || !isBlocked(this.Bx - fdelta, this.By + SIZE - 16)) || !isBlocked(this.Bx, this.By + SIZE/2) || !isBlocked(this.Bx -16, this.By -64))
 
@@ -353,7 +354,7 @@ public class Butler {
         if (this.canigoup()) {
 
 
-            fdelta = Player.getpdelta();
+         //   fdelta = Player.getpdelta();
 
             this.currentanime = skup;
 
@@ -374,7 +375,7 @@ public class Butler {
 
         if (this.canigodown()) {
 
-            fdelta = Player.getpdelta();
+        //    fdelta = Player.getpdelta();
 
             this.currentanime = skdown;
 
@@ -391,7 +392,7 @@ public class Butler {
 
         if (this.canigoleft()) {
 
-            fdelta = Player.getpdelta();
+          //  fdelta = Player.getpdelta();
 
             this.currentanime = skleft;
 
@@ -408,7 +409,7 @@ public class Butler {
 
         if (this.canigoright()) {
 
-            fdelta = Player.getpdelta();
+          //  fdelta = Player.getpdelta();
 
             this.currentanime = skright;
 
@@ -423,33 +424,33 @@ public class Butler {
 
     void setdirection() {
 
-        if (Player.getplayersY() < this.By) {
+      //  if (Player.getplayersY() < this.By) {
 
-            this.mydirection = Direction.UP;
-
-        }
-
-        if ((Player.getplayersY() > this.By)) {
+//            this.mydirection = Direction.UP;
+//
+//        }
+//
+//        if ((Player.getplayersY() > this.By)) {
+//
+//            this.mydirection = Direction.DOWN;
+//
+//        }
+//
+//        if ((Player.getplayersX() > this.Bx)) {
+//
+//            this.mydirection = Direction.RIGHT;
+//
+//        }
+//
+//        if ((Player.getplayersX() < this.Bx) && canigoleft()) {
+//
+//            this.mydirection = Direction.LEFT;
+//
+//        } else {
 
             this.mydirection = Direction.DOWN;
 
-        }
-
-        if ((Player.getplayersX() > this.Bx)) {
-
-            this.mydirection = Direction.RIGHT;
-
-        }
-
-        if ((Player.getplayersX() < this.Bx) && canigoleft()) {
-
-            this.mydirection = Direction.LEFT;
-
-        } else {
-
-            this.mydirection = Direction.DOWN;
-
-        }
+        
 
     }
 
@@ -457,33 +458,33 @@ public class Butler {
     void move() throws SlickException {
 
         //float fdelta = 18 * 0.1f;
-        if (this.Bx > Player.getplayersX()) {
-
-            this.moveleft();
-
-        } else if (this.Bx < Player.getplayersX()) {
-
-            this.moveright();
-
-            // System.out.println("I'm moving right. My id is " + this.getID() + " My x is " + this.Bx + " and my Y is " + this.By);
-
-            //System.out.println("By the way the player's X is " + Player.x + " and the player's Y " + Player.y);
-
-
-        } else {//System.out.println("I can't move left or right. My x is " + this.Bx + " and my Y is " + this.By);
-
-        
-
-
-        if (this.By > Player.getplayersY()) {
-
-            this.moveup();
-
-        } else if (this.By < Player.getplayersY()) {
-
-            this.movedown();
-
-        } else {
+//        if (this.Bx > Player.getplayersX()) {
+//
+//            this.moveleft();
+//
+//        } else if (this.Bx < Player.getplayersX()) {
+//
+//            this.moveright();
+//
+//            // System.out.println("I'm moving right. My id is " + this.getID() + " My x is " + this.Bx + " and my Y is " + this.By);
+//
+//            //System.out.println("By the way the player's X is " + Player.x + " and the player's Y " + Player.y);
+//
+//
+//        } else {//System.out.println("I can't move left or right. My x is " + this.Bx + " and my Y is " + this.By);
+//
+//        
+//
+//
+//        if (this.By > Player.getplayersY()) {
+//
+//            this.moveup();
+//
+//        } else if (this.By < Player.getplayersY()) {
+//
+//            this.movedown();
+//
+//        } else {
 
             int r = (int) (Math.random() * (5 - 1)) + 1;
 
@@ -509,7 +510,7 @@ public class Butler {
 
         }
 
-        }}
+        
 
     
 
