@@ -57,7 +57,7 @@ public class TTS2016 extends BasicGameState {
             throws SlickException {
         gc.setTargetFrameRate(60);
         gc.setShowFPS(false);
-        grassMap = new TiledMap("res/Mansion.tmx");
+        grassMap = new TiledMap("res/BattleMap2.tmx");
         camera = new Camera(gc, grassMap);
         
         
@@ -168,8 +168,9 @@ public class TTS2016 extends BasicGameState {
     }
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
             throws SlickException {
-       
+            if(player.counter >= 9){
             sbg.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+            }
             counter += delta;
             Input input = gc.getInput();
             float fdelta = delta * player.speed;
@@ -284,12 +285,12 @@ public class TTS2016 extends BasicGameState {
             if (player.health <= 0 || player.speed <= 0f) {
                 sbg.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
             }
-            if (orb1.hitbox.intersects(Butler.rect)) {
-                Butler.isVisible = false;
-            }
-            if (orb1.hitbox.intersects(Butler.rect)) {
-                Butler.isVisible = false;
-            }
+//            if (orb1.hitbox.intersects(Butler.rect)) {
+  //              Butler.isVisible = false;
+    //        }
+//            if (orb1.hitbox.intersects(Butler.rect)) {
+  //              Butler.isVisible = false;
+    //        }
         }
     
     public int getID() {

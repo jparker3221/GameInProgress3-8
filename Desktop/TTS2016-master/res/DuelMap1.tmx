@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="tile2map32" tilewidth="32" tileheight="32" tilecount="1320">
+  <image source="dungeon/tile2map_tileset/tile2map32.png" width="128" height="10560"/>
+  <tile id="356">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="412">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="413">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="414">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="416">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="417">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="418">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="420">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="421">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="422">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztw8EJAAAMA6Hbf+dAl+hTwVVTVfXtAdjwURc=
+  </data>
+ </layer>
+ <layer name="FENCE" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzFlUsOgCAMRPWsRDiVGkPUawoLEjOZ8hcnmVWR15Yi6zxN22DvzofzaFnCNZE8dEOO730Zt0QKvo3l5deGuMTt2XtL9srhvueBxW1ibS03yGRwmVq5UpztqzrWm8NdBMbXXC+c6RRXw/nhHVkqztfPRIhj71P1sjuJ3Ni/ZuRclXCV0Me/72+tWriG9EQSnnUJt0YlbxVypblkdbK1Of1g3C9l4B08na/Bvp0f84Rq6w==
+  </data>
+ </layer>
+</map>
