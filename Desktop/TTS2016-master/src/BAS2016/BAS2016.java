@@ -1,4 +1,4 @@
-package TTS2016;
+package BAS2016;
 import org.newdawn.slick.state.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,10 +25,11 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class TTS2016 extends BasicGameState {
+public class BAS2016 extends BasicGameState {
     public static Candy candy1, candy2;
     public static Soda soda1, soda2;
-    public Player player;
+    public Player1 player1;
+    public Player2 player2;
     public Maid Mary, Esperanza;
     public Butler Thomas, Alfred;
     public static Destroyable1 destroyable1a, destroyable1b, destroyable1c,
@@ -50,7 +51,7 @@ public class TTS2016 extends BasicGameState {
     private static final int SCREEN_WIDTH = 1000;
     private static final int SCREEN_HEIGHT = 750;
 
-    public TTS2016(int xSize, int ySize) {
+    public BAS2016(int xSize, int ySize) {
     }
 
     public void init(GameContainer gc, StateBasedGame sbg)
@@ -82,7 +83,7 @@ public class TTS2016 extends BasicGameState {
                 }
             }
         }
-        player = new Player();
+        player1 = new Player1();
         candy1 = new Candy(2335, 345);
         candy2 = new Candy(3450, 365);
         Candyshop.add(candy1);
@@ -119,17 +120,17 @@ public class TTS2016 extends BasicGameState {
         tables.add(destroyable2c);
         tables.add(destroyable2d);
         tables.add(destroyable2e);
-        magic8ball = new orb((int) player.getplayersX(), (int) player.getplayersY());
+        magic8ball = new orb((int) player1.getplayersX(), (int) player1.getplayersY());
     }
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
             throws SlickException {
-        camera.centerOn((int) player.x, (int) player.y);
+        camera.centerOn((int) player1.x, (int) player1.y);
         camera.drawMap();
         camera.translateGraphics();
-        player.sprite.draw((int) player.x, (int) player.y);
-        g.drawString("Health: " + player.health / 1000, camera.cameraX + 10,
+        player1.sprite.draw((int) player1.x, (int) player1.y);
+        g.drawString("Health: " + player1.health / 1000, camera.cameraX + 10,
                 camera.cameraY + 10);
-        g.drawString("speed: " + (int) (player.speed * 10), camera.cameraX + 10,
+        g.drawString("speed: " + (int) (player1.speed * 10), camera.cameraX + 10,
                 camera.cameraY + 25);
         g.drawString("time passed: " + counter / 1000, camera.cameraX + 600, camera.cameraY);
         for (Candy n : Candyshop) {
@@ -168,121 +169,229 @@ public class TTS2016 extends BasicGameState {
     }
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
             throws SlickException {
-            if(player.counter >= 9){
+            if(player1.counter >= 9){
             sbg.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
             }
             counter += delta;
             Input input = gc.getInput();
-            float fdelta = delta * player.speed;
-            player.setpdelta(fdelta);
+            float fdelta = delta * player1.speed;
+            player1.setpdelta(fdelta);
             double rightlimit = (grassMap.getWidth() * SIZE) - (SIZE * 0.75);
-            float projectedright = player.x + fdelta + SIZE;
+            float projectedright = player1.x + fdelta + SIZE;
             boolean cangoright = projectedright < rightlimit;
         
             if (input.isKeyDown(Input.KEY_UP)) {
-                player.sprite = player.up;
+                player1.sprite = player1.up;
                 float fdsc = (float) (fdelta - (SIZE * .15));
-                if (!(isBlocked(player.x, player.y - fdelta) || isBlocked((float) (player.x + SIZE + 1.5), player.y - fdelta))) {
-                    player.sprite.update(delta);
-                    player.y -= fdelta;
+                if (!(isBlocked(player1.x, player1.y - fdelta) || isBlocked((float) (player1.x + SIZE + 1.5), player1.y - fdelta))) {
+                    player1.sprite.update(delta);
+                    player1.y -= fdelta;
                     System.out.println("up!");
                 }
             } else if (input.isKeyDown(Input.KEY_DOWN)) {
-                player.sprite = player.down;
-                if (!isBlocked(player.x, player.y + SIZE + fdelta)
-                        || !isBlocked(player.x + SIZE - 1, player.y + SIZE + fdelta)) {
-                    player.sprite.update(delta);
-                    player.y += fdelta;
+                player1.sprite = player1.down;
+                if (!isBlocked(player1.x, player1.y + SIZE + fdelta)
+                        || !isBlocked(player1.x + SIZE - 1, player1.y + SIZE + fdelta)) {
+                    player1.sprite.update(delta);
+                    player1.y += fdelta;
                 }
             } else if (input.isKeyDown(Input.KEY_LEFT)) {
-                player.sprite = player.left;
-                if (!(isBlocked(player.x - fdelta, player.y) || isBlocked(player.x
-                        - fdelta, player.y + SIZE - 1))) {
-                    player.sprite.update(delta);
-                    player.x -= fdelta;
+                player1.sprite = player1.left;
+                if (!(isBlocked(player1.x - fdelta, player1.y) || isBlocked(player1.x
+                        - fdelta, player1.y + SIZE - 1))) {
+                    player1.sprite.update(delta);
+                    player1.x -= fdelta;
                 }
             } else if (input.isKeyDown(Input.KEY_RIGHT)) {
-                player.sprite = player.right;
+                player1.sprite = player1.right;
                 if (cangoright
-                        && (!(isBlocked(player.x + SIZE + fdelta,
-                                player.y) || isBlocked(player.x + SIZE + fdelta, player.y
+                        && (!(isBlocked(player1.x + SIZE + fdelta,
+                                player1.y) || isBlocked(player1.x + SIZE + fdelta, player1.y
                                 + SIZE - 1)))) {
-                    player.sprite.update(delta);
-                    player.x += fdelta;
+                    player1.sprite.update(delta);
+                    player1.x += fdelta;
                 }
-            } else if (input.isKeyDown(Input.KEY_SPACE)) {
-                orb1.setX((int) player.x); 
-            orb1.setY((int) player.y);
+            }
+            else if (input.isKeyDown(Input.KEY_0)) {
+                orb1.setX((int) player1.x); 
+            orb1.setY((int) player1.y);
             orb1.hitbox.setX((int) orb1.getLocationX());
                 orb1.hitbox.setY((int) orb1.getLocationY());
                 orb1.setIsVisible(!orb1.isIsVisible());
             }
-            player.rect.setLocation(player.getplayershitboxX(),
-                    player.getplayershitboxY());
+            if (input.isKeyDown(Input.KEY_W)) {
+                player2.sprite = player2.up;
+                float fdsc = (float) (fdelta - (SIZE * .15));
+                if (!(isBlocked(player2.x, player2.y - fdelta) || isBlocked((float) (player2.x + SIZE + 1.5), player2.y - fdelta))) {
+                    player2.sprite.update(delta);
+                    player2.y -= fdelta;
+                    System.out.println("up!");
+                }
+            } else if (input.isKeyDown(Input.KEY_S)) {
+                player2.sprite = player2.down;
+                if (!isBlocked(player2.x, player2.y + SIZE + fdelta)
+                        || !isBlocked(player2.x + SIZE - 1, player2.y + SIZE + fdelta)) {
+                    player2.sprite.update(delta);
+                    player2.y += fdelta;
+                }
+            } else if (input.isKeyDown(Input.KEY_A)) {
+                player2.sprite = player2.left;
+                if (!(isBlocked(player2.x - fdelta, player2.y) || isBlocked(player2.x
+                        - fdelta, player2.y + SIZE - 1))) {
+                    player2.sprite.update(delta);
+                    player2.x -= fdelta;
+                }
+            } else if (input.isKeyDown(Input.KEY_D)) {
+                player2.sprite = player2.right;
+                if (cangoright
+                        && (!(isBlocked(player2.x + SIZE + fdelta,
+                                player2.y) || isBlocked(player2.x + SIZE + fdelta, player2.y
+                                + SIZE - 1)))) {
+                    player2.sprite.update(delta);
+                    player2.x += fdelta;
+                }
+            }else if (input.isKeyDown(Input.KEY_Z)) {
+                orb1.setX((int) player2.x); 
+            orb1.setY((int) player2.y);
+            orb1.hitbox.setX((int) orb1.getLocationX());
+                orb1.hitbox.setY((int) orb1.getLocationY());
+                orb1.setIsVisible(!orb1.isIsVisible());
+            }
+            player1.rect.setLocation(player1.getplayershitboxX(),
+                    player1.getplayershitboxY());
             for (Candy n : Candyshop) {
-                if (player.rect.intersects(n.hitbox)) {
+                if (player1.rect.intersects(n.hitbox)) {
                     if (n.isvisible) {
-                        player.health += 100000;
+                        player1.health += 100000;
                         n.isvisible = false;
                     }
                 }
             }
             for (Maid m : brushes) {
-                if (Math.abs(player.x - m.Bx) < 576) {
+                if (Math.abs(player1.x - m.Bx) < 576) {
                     m.move();
                 }
             }
             for (Maid e : brushes) {
-                if (player.rect.intersects(e.rect)) {
+                if (player1.rect.intersects(e.rect)) {
                     {
-                        player.health -= 150;
+                        player1.health -= 150;
                     }
                 }
             }
             for (Butler b : platters) {
-                if (Math.abs(player.x - b.Bx) < 512) {
+                if (Math.abs(player1.x - b.Bx) < 512) {
                     b.move();
                 }
             }
             for (Butler e : platters) {
-                if (player.rect.intersects(e.rect)) {
+                if (player1.rect.intersects(e.rect)) {
                     //System.out.println("yay");
                     {
-                        player.speed -= .005f;
+                        player1.speed -= .005f;
                     }
                 }
                 if (Butler.rect.intersects(e.rect)) {
                 }
             }
             for (Soda s : Sodashop) {
-                if (player.rect.intersects(s.hitbox)) {
+                if (player1.rect.intersects(s.hitbox)) {
                     //System.out.println("yay");
                     if (s.isvisible) {
-                        player.speed += .3f;
+                        player1.speed += .3f;
                         s.isvisible = false;
                     }
                 }
             }
             for (Destroyable1 d : desks) {
-                if (player.rect.intersects(d.hitbox)) {
+                if (player1.rect.intersects(d.hitbox)) {
                     //System.out.println("yay");
                     if (d.isvisible) {
-                        player.counter += 1;
+                        player1.counter += 1;
                         d.isvisible = false;
                     }
                 }
             }
             for (Destroyable2 d : tables) {
-                if (player.rect.intersects(d.hitbox)) {
+                if (player1.rect.intersects(d.hitbox)) {
                     //System.out.println("yay");
                     if (d.isvisible) {
-                        player.counter += 1;
+                        player1.counter += 1;
                         d.isvisible = false;
                     }
                }
             }
-            player.health -= counter / 1000;
-            if (player.health <= 0 || player.speed <= 0f) {
+            player1.health -= counter / 1000;
+            if (player1.health <= 0 || player1.speed <= 0f) {
+                sbg.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+            }
+            
+            player2.rect.setLocation(player2.getplayershitboxX(),
+                    player2.getplayershitboxY());
+            for (Candy n : Candyshop) {
+                if (player2.rect.intersects(n.hitbox)) {
+                    if (n.isvisible) {
+                        player2.health += 100000;
+                        n.isvisible = false;
+                    }
+                }
+            }
+            for (Maid m : brushes) {
+                if (Math.abs(player2.x - m.Bx) < 576) {
+                    m.move();
+                }
+            }
+            for (Maid e : brushes) {
+                if (player2.rect.intersects(e.rect)) {
+                    {
+                        player2.health -= 150;
+                    }
+                }
+            }
+            for (Butler b : platters) {
+                if (Math.abs(player2.x - b.Bx) < 512) {
+                    b.move();
+                }
+            }
+            for (Butler e : platters) {
+                if (player2.rect.intersects(e.rect)) {
+                    //System.out.println("yay");
+                    {
+                        player2.speed -= .005f;
+                    }
+                }
+                if (Butler.rect.intersects(e.rect)) {
+                }
+            }
+            for (Soda s : Sodashop) {
+                if (player2.rect.intersects(s.hitbox)) {
+                    //System.out.println("yay");
+                    if (s.isvisible) {
+                        player2.speed += .3f;
+                        s.isvisible = false;
+                    }
+                }
+            }
+            for (Destroyable1 d : desks) {
+                if (player2.rect.intersects(d.hitbox)) {
+                    //System.out.println("yay");
+                    if (d.isvisible) {
+                        player2.counter += 1;
+                        d.isvisible = false;
+                    }
+                }
+            }
+            for (Destroyable2 d : tables) {
+                if (player1.rect.intersects(d.hitbox)) {
+                    //System.out.println("yay");
+                    if (d.isvisible) {
+                        player1.counter += 1;
+                        d.isvisible = false;
+                    }
+               }
+            }
+            player1.health -= counter / 1000;
+            if (player1.health <= 0 || player1.speed <= 0f) {
                 sbg.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
             }
 //            if (orb1.hitbox.intersects(Butler.rect)) {

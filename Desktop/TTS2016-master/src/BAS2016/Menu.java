@@ -1,4 +1,4 @@
-package TTS2016;
+package BAS2016;
 
 
 import org.newdawn.slick.Color;
@@ -33,19 +33,19 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 
 
-public class lose extends BasicGameState {
+public class Menu extends BasicGameState {
 
 
     
 
 
     private StateBasedGame game;
-    public Image startimage;
 
+    public Image startimage;
     
 
 
-     public lose(int xSize, int ySize) {
+     public Menu(int xSize, int ySize) {
 
 
 
@@ -60,7 +60,8 @@ public class lose extends BasicGameState {
 
 
             throws SlickException {
-    	startimage = new Image("res/Game_Lose_Art.jpg");
+    	
+    	startimage = new Image("res/Game_Open_Art.jpg");
 
 
         this.game = game;
@@ -81,22 +82,28 @@ public class lose extends BasicGameState {
 
 
             throws SlickException {
-    	
-    	startimage.draw();
-
 
 
 // TODO AutoÃ¢â‚¬Âgenerated method stub
+    	
+    	
 
 
         g.setColor(Color.white);
+        
+        startimage.draw();
+
+        //g.drawString("stuff", 300, 200);
+        
+        //g.drawString("collect the antidote before time runs out! red potions are health and yellow potions make you run faster", 50, 300);
 
 
-        //g.drawString("You LOSE!", 450, 200);
-        g.drawString("press 1 to try again", 400, 320);
+        //g.drawString("1. Play Game", 50, 100);
+
+        //g.drawString("2. High Scores(", 50, 120);
 
 
-       
+        //g.drawString("3. Quit", 50, 140);
 
 
     }
@@ -128,7 +135,7 @@ public class lose extends BasicGameState {
 // TODO AutoÃ¢â‚¬Âgenerated method stub
 
 
-        return 2;
+        return 0;
 
 
     }
@@ -146,26 +153,7 @@ public class lose extends BasicGameState {
 
             case Input.KEY_1:
 
-             //   Player.health  = 100000;
-              //  Player.speed = .4f;
-                TTS2016.counter = 0;
-             //   Player.x = 2525f;
-             //   Player.y = 1200f;
-                TTS2016.candy1.isvisible = true;
-                TTS2016.candy2.isvisible = true;
-                TTS2016.soda1.isvisible = true;
-                TTS2016.soda2.isvisible = true;
-                TTS2016.destroyable1a.isvisible = true;
-                TTS2016.destroyable1b.isvisible = true;
-                TTS2016.destroyable1c.isvisible = true;
-                TTS2016.destroyable1d.isvisible = true;
-                TTS2016.destroyable1e.isvisible = true;
-                TTS2016.destroyable2a.isvisible = true;
-                TTS2016.destroyable2b.isvisible = true;
-                TTS2016.destroyable2c.isvisible = true;
-                TTS2016.destroyable2d.isvisible = true;
-                TTS2016.destroyable2e.isvisible = true;
-                //redo potions and reset cordinates of player
+
                 game.enterState(1, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TTS2016;
+package BAS2016;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;

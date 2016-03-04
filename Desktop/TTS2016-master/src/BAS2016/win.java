@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TTS2016;
+package BAS2016;
 
 
 import org.newdawn.slick.Color;
@@ -148,7 +148,7 @@ public class win extends BasicGameState {
 
               //  Player.health  = 100000;
            //     Player.speed = .4f;
-                TTS2016.counter = 0;
+                BAS2016.counter = 0;
             //    Player.x = 2525f;
           //      Player.y = 1200f;
            //     Player.counter = 0;
@@ -157,20 +157,20 @@ public class win extends BasicGameState {
                 //item.isvisible = true;
                 //item1.isvisible = true;
                
-                TTS2016.candy1.isvisible = true;
-                TTS2016.candy2.isvisible = true;
-                TTS2016.soda1.isvisible = true;
-                TTS2016.soda2.isvisible = true;
-                TTS2016.destroyable1a.isvisible = true;
-                TTS2016.destroyable1b.isvisible = true;
-                TTS2016.destroyable1c.isvisible = true;
-                TTS2016.destroyable1d.isvisible = true;
-                TTS2016.destroyable1e.isvisible = true;
-                TTS2016.destroyable2a.isvisible = true;
-                TTS2016.destroyable2b.isvisible = true;
-                TTS2016.destroyable2c.isvisible = true;
-                TTS2016.destroyable2d.isvisible = true;
-                TTS2016.destroyable2e.isvisible = true;
+                BAS2016.candy1.isvisible = true;
+                BAS2016.candy2.isvisible = true;
+                BAS2016.soda1.isvisible = true;
+                BAS2016.soda2.isvisible = true;
+                BAS2016.destroyable1a.isvisible = true;
+                BAS2016.destroyable1b.isvisible = true;
+                BAS2016.destroyable1c.isvisible = true;
+                BAS2016.destroyable1d.isvisible = true;
+                BAS2016.destroyable1e.isvisible = true;
+                BAS2016.destroyable2a.isvisible = true;
+                BAS2016.destroyable2b.isvisible = true;
+                BAS2016.destroyable2c.isvisible = true;
+                BAS2016.destroyable2d.isvisible = true;
+                BAS2016.destroyable2e.isvisible = true;
                 
                 game.enterState(1, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 

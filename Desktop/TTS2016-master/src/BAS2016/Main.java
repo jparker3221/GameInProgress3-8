@@ -1,4 +1,4 @@
-package TTS2016;
+package BAS2016;
 
 
 import org.newdawn.slick.*;
@@ -27,7 +27,7 @@ public class Main extends StateBasedGame{
 
       this.addState(new Menu(xSize, ySize));
 
-      this.addState(new TTS2016(xSize, ySize));
+      this.addState(new BAS2016(xSize, ySize));
       
       this.addState(new lose(xSize, ySize));
       

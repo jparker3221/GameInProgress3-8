@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TTS2016;
+package BAS2016;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
@@ -12,12 +12,13 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
+
 /**
  *
  * @author jparker3221
  */
-public class Player {
-
+public class Player2 {
+ 
     public float x = 2525f;
 
     public float y = 1200f;
@@ -43,7 +44,7 @@ public class Player {
 
     SpriteSheet runningSS;
 
-    public Player() throws SlickException {
+    public Player2() throws SlickException {
         this.runningSS = new SpriteSheet("res/BratSpriteSheet.png", 64, 64, 0);
 up = new Animation();
         up.setAutoUpdate(true);
@@ -145,4 +146,5 @@ up = new Animation();
         hitboxY = getplayershitboxY();
 
     }
+   
 }

@@ -3,20 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TTS2016;
-
-import org.newdawn.slick.Animation;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
-import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Shape;
+package BAS2016;
 
 /**
  *
  * @author jparker3221
  */
-public class Butler {
-    
+    import org.newdawn.slick.Animation;
+
+import org.newdawn.slick.SlickException;
+
+import org.newdawn.slick.SpriteSheet;
+
+import org.newdawn.slick.geom.Rectangle;
+
+import org.newdawn.slick.geom.Shape;
+
+
+public class Maid {
+
+
     private static int numberOfEnemies = 0;
     static boolean isVisible;
 
@@ -62,9 +68,9 @@ public class Butler {
 
     int MapHeight = 100;
 
-    //double rightlimit = (MapWidth * SIZE) - (SIZE * 0.75);
+    double rightlimit = (MapWidth * SIZE) - (SIZE * 0.75);
 
-   // double downlimit = (MapHeight * SIZE) - (SIZE * 0.75);
+    double downlimit = (MapHeight * SIZE) - (SIZE * 0.75);
 
     private boolean icangoup;
 
@@ -96,7 +102,7 @@ public class Butler {
     Direction mydirection;
 
 
-    Butler(int a, int b) throws SlickException {
+    Maid(int a, int b) throws SlickException {
 
 
         Bx = a;
@@ -124,7 +130,7 @@ public class Butler {
         this.mydirection = Direction.WAIT;
 
 
-        SpriteSheet skeletonSS = new SpriteSheet("res/ButlerSpriteSheet.png",
+        SpriteSheet skeletonSS = new SpriteSheet("res/MaidSpriteSheet.png",
                 64, 64, 0);
 
         skup = new Animation();
@@ -256,240 +262,100 @@ public class Butler {
    
 
     boolean isBlocked(float xcheck, float ycheck) {
-
-        // System.out.println("The skeleton " + this.getID() + " Checking on the tile at x " + xcheck + " and at y " + ycheck);
-
         int xBlock = (int) (xcheck / SIZE);
-
         int yBlock = (int) (ycheck / SIZE);
-
-
-        if ((xBlock < MapWidth && yBlock < MapHeight) && (xBlock > 0 && yBlock > 0)) {
-
-
-            // System.out.println("Am I blocked ? " + Blockedblocked[xBlock][yBlock] );
-
+        if ((xBlock < MapWidth && yBlock < MapHeight) && (xBlock > 0
+                && yBlock > 0)) {
             return Blocked.blocked[xBlock][yBlock];
-
         } else {
-
             return true;
-
         }
-
     }
-
-
     private boolean canigoup() {
-
       //  fdelta = Player.getpdelta();
-
         return (!isBlocked(this.Bx, this.By - fdelta)
-
                 || !isBlocked(this.Bx + SIZE - 1, this.By - fdelta));
-
     }
-
-
     private boolean canigodown() {
-
-      //  fdelta = Player.getpdelta();
-
-        return ((!isBlocked(this.Bx, this.By + SIZE + 8)
-
-                || !isBlocked(this.Bx + SIZE - 1, this.By + SIZE + fdelta)));
-
-
-    }
-
-
-    private boolean canigoright() {
-
-        // fdelta = Player,getpdelta();
-
-        //System.out.println("Can I go right? " + (!isBlocked(this.Bx + SIZE + fdelta, this.By) || !isBlocked(this.Bx + SIZE + fdelta, this.By - 1)));
-
-        return (!isBlocked(this.Bx + SIZE + 6, this.By - 16)
-
-                || !isBlocked(this.Bx + SIZE + 16, this.By));
-
-        //return true;       
-
-
-    }
-
-
-    private boolean canigoleft() {
-
      //   fdelta = Player.getpdelta();
-
-        //if (!(!isBlocked(this.Bx - SIZE, this.By) || !isBlocked(this.Bx - fdelta, this.By + SIZE - 16)) || !isBlocked(this.Bx, this.By + SIZE/2) || !isBlocked(this.Bx -16, this.By -64))
-
-        //{System.out.println("I can't go left. My id is " + this.getID());
-
-        // }   
-
-        //{}
-
+        return ((!isBlocked(this.Bx, this.By + SIZE + 8)
+                || !isBlocked(this.Bx + SIZE - 1, this.By + SIZE + fdelta)));
+    }
+    private boolean canigoright() {
+        return (!isBlocked(this.Bx + SIZE + 6, this.By - 16)
+                || !isBlocked(this.Bx + SIZE + 16, this.By));
+    }
+    private boolean canigoleft() {
+     //   fdelta = Player.getpdelta();
         return (!isBlocked(this.Bx - SIZE / 2, this.By + SIZE / 2)
-
                 || !isBlocked(this.Bx - SIZE, this.By)
-
-                || !isBlocked(this.Bx - fdelta, this.By + SIZE - 16) //|| !isBlocked(this.Bx, this.By + SIZE/2)
-
-                // || !isBlocked(this.Bx -16, this.By -64)
-
-                // || !isBlocked(this.Bx + 9, this.By + 8)
-
+                || !isBlocked(this.Bx - fdelta, this.By + SIZE - 16) 
                 );
-
-
-        //|| !isBlocked(this.Bx + SIZE/2 -1,this.By + SIZE )));
-
     }
-
-
     void moveup() throws SlickException {
-
         if (this.canigoup()) {
-
-
          //   fdelta = Player.getpdelta();
-
             this.currentanime = skup;
-
             this.By -= fdelta / 2;
-
             this.rect.setLocation(this.Bx, this.By);
-
         } else {
-
             this.currentanime = skwait;
-
         }
-
     }
-
-
     void movedown() throws SlickException {
-
         if (this.canigodown()) {
-
-        //    fdelta = Player.getpdelta();
-
+         //   fdelta = Player.getpdelta();
             this.currentanime = skdown;
-
             this.By += fdelta / 2;
-
             this.rect.setLocation(this.Bx, this.By);
-
         }
-
     }
-
-
     void moveleft() throws SlickException {
-
         if (this.canigoleft()) {
-
-          //  fdelta = Player.getpdelta();
-
+         //   fdelta = Player.getpdelta();
             this.currentanime = skleft;
-
             this.Bx -= fdelta / 2;
-
             this.rect.setLocation(this.Bx, this.By);
-
         }
-
     }
-
-
     void moveright() throws SlickException {
-
         if (this.canigoright()) {
-
-          //  fdelta = Player.getpdelta();
-
+         //   fdelta = Player.getpdelta();
             this.currentanime = skright;
-
             this.Bx += fdelta / 2;
-
             this.rect.setLocation(this.Bx, this.By);
-
         }
-
     }
-
-
     void setdirection() {
-
       //  if (Player.getplayersY() < this.By) {
-
-//            this.mydirection = Direction.UP;
-//
-//        }
-//
-//        if ((Player.getplayersY() > this.By)) {
-//
+            this.mydirection = Direction.UP;
+        }
+   //     if ((Player.getplayersY() > this.By)) {
 //            this.mydirection = Direction.DOWN;
-//
 //        }
-//
 //        if ((Player.getplayersX() > this.Bx)) {
-//
 //            this.mydirection = Direction.RIGHT;
-//
 //        }
-//
 //        if ((Player.getplayersX() < this.Bx) && canigoleft()) {
-//
 //            this.mydirection = Direction.LEFT;
-//
 //        } else {
-
-            this.mydirection = Direction.DOWN;
-
-        
-
-    }
-
-
+          //  this.mydirection = Direction.DOWN;
+      //  }
+    
     void move() throws SlickException {
-
-        //float fdelta = 18 * 0.1f;
+        if (true){
 //        if (this.Bx > Player.getplayersX()) {
-//
 //            this.moveleft();
-//
 //        } else if (this.Bx < Player.getplayersX()) {
-//
 //            this.moveright();
-//
-//            // System.out.println("I'm moving right. My id is " + this.getID() + " My x is " + this.Bx + " and my Y is " + this.By);
-//
-//            //System.out.println("By the way the player's X is " + Player.x + " and the player's Y " + Player.y);
-//
-//
-//        } else {//System.out.println("I can't move left or right. My x is " + this.Bx + " and my Y is " + this.By);
-//
-//        
-//
-//
-//        if (this.By > Player.getplayersY()) {
-//
-//            this.moveup();
-//
-//        } else if (this.By < Player.getplayersY()) {
-//
-//            this.movedown();
-//
 //        } else {
-
+//        }
+//        if (this.By > Player.getplayersY()) {
+//            this.moveup();
+//        } else if (this.By < Player.getplayersY()) {
+//            this.movedown();
+//        } else {
             int r = (int) (Math.random() * (5 - 1)) + 1;
-
-            //System.out.println("The number is : " + r);
-
             if (r == 1) {
 
                 this.moveup();
@@ -508,9 +374,11 @@ public class Butler {
 
             }
 
-        }
-
         
+
+    } else {this.currentanime = skdead;}
+
+    }
 
     
 
@@ -571,4 +439,5 @@ public class Butler {
 
 
 }
+
 
