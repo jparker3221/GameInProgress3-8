@@ -14,6 +14,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.TrueTypeFont;
@@ -37,6 +38,7 @@ public class BAS2016 extends BasicGameState {
     public static Destroyable2 destroyable2a, destroyable2b, destroyable2c,
             destroyable2d, destroyable2e;
     public static orb magic8ball, orb1;
+    static Music piano;
     public ArrayList<Candy> Candyshop = new ArrayList();
     public ArrayList<Soda> Sodashop = new ArrayList();
     public static ArrayList<Maid> brushes = new ArrayList();
@@ -58,7 +60,8 @@ public class BAS2016 extends BasicGameState {
             throws SlickException {
         gc.setTargetFrameRate(60);
         gc.setShowFPS(false);
-        grassMap = new TiledMap("res/BattleMap2.tmx");
+        grassMap = new TiledMap("res/d4.tmx");
+        piano=new Music("res/Piano.ogg");
         camera = new Camera(gc, grassMap);
         
         
@@ -75,7 +78,7 @@ public class BAS2016 extends BasicGameState {
         }
         for (int xAxis = 0; xAxis < grassMap.getWidth(); xAxis++) {
             for (int yAxis = 0; yAxis < grassMap.getHeight(); yAxis++) {
-                int tileID = grassMap.getTileId(xAxis, yAxis, 3);
+                int tileID = grassMap.getTileId(xAxis, yAxis, 1);
                 String value = grassMap.getTileProperty(tileID,
                         "blocked", "false");
                 if ("true".equals(value)) {
@@ -84,7 +87,7 @@ public class BAS2016 extends BasicGameState {
             }
         }
         player1 = new Player1();
-        candy1 = new Candy(2335, 345);
+        /*candy1 = new Candy(2335, 345);
         candy2 = new Candy(3450, 365);
         Candyshop.add(candy1);
         Candyshop.add(candy2);
@@ -120,7 +123,8 @@ public class BAS2016 extends BasicGameState {
         tables.add(destroyable2c);
         tables.add(destroyable2d);
         tables.add(destroyable2e);
-        magic8ball = new orb((int) player1.getplayersX(), (int) player1.getplayersY());
+        */magic8ball = new orb((int) player1.getplayersX(), (int) player1.getplayersY());
+        piano.loop();
     }
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
             throws SlickException {
@@ -186,7 +190,7 @@ public class BAS2016 extends BasicGameState {
                 if (!(isBlocked(player1.x, player1.y - fdelta) || isBlocked((float) (player1.x + SIZE + 1.5), player1.y - fdelta))) {
                     player1.sprite.update(delta);
                     player1.y -= fdelta;
-                    System.out.println("up!");
+                    //System.out.println("up!");
                 }
             } else if (input.isKeyDown(Input.KEY_DOWN)) {
                 player1.sprite = player1.down;
@@ -225,7 +229,7 @@ public class BAS2016 extends BasicGameState {
                 if (!(isBlocked(player2.x, player2.y - fdelta) || isBlocked((float) (player2.x + SIZE + 1.5), player2.y - fdelta))) {
                     player2.sprite.update(delta);
                     player2.y -= fdelta;
-                    System.out.println("up!");
+                    //System.out.println("up!");
                 }
             } else if (input.isKeyDown(Input.KEY_S)) {
                 player2.sprite = player2.down;
