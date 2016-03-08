@@ -87,6 +87,7 @@ public class BAS2016 extends BasicGameState {
             }
         }
         player1 = new Player1();
+        player2 = new Player2();
         /*candy1 = new Candy(2335, 345);
         candy2 = new Candy(3450, 365);
         Candyshop.add(candy1);
@@ -128,10 +129,11 @@ public class BAS2016 extends BasicGameState {
     }
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
             throws SlickException {
-        camera.centerOn((int) player1.x, (int) player1.y);
+        //camera.centerOn((int) player1.x, (int) player1.y);
         camera.drawMap();
         camera.translateGraphics();
         player1.sprite.draw((int) player1.x, (int) player1.y);
+        player2.sprite.draw((int) player2.x, (int) player2.y);
         g.drawString("Health: " + player1.health / 1000, camera.cameraX + 10,
                 camera.cameraY + 10);
         g.drawString("speed: " + (int) (player1.speed * 10), camera.cameraX + 10,
@@ -216,7 +218,7 @@ public class BAS2016 extends BasicGameState {
                     player1.x += fdelta;
                 }
             }
-            else if (input.isKeyDown(Input.KEY_0)) {
+            else if (input.isKeyDown(Input.KEY_ENTER)) {
                 orb1.setX((int) player1.x); 
             orb1.setY((int) player1.y);
             orb1.hitbox.setX((int) orb1.getLocationX());
@@ -325,10 +327,6 @@ public class BAS2016 extends BasicGameState {
                     }
                }
             }
-            player1.health -= counter / 1000;
-            if (player1.health <= 0 || player1.speed <= 0f) {
-                sbg.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
-            }
             
             player2.rect.setLocation(player2.getplayershitboxX(),
                     player2.getplayershitboxY());
@@ -396,6 +394,10 @@ public class BAS2016 extends BasicGameState {
             }
             player1.health -= counter / 1000;
             if (player1.health <= 0 || player1.speed <= 0f) {
+                sbg.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+            }
+            player2.health -= counter / 1000;
+            if (player2.health <= 0 || player2.speed <= 0f) {
                 sbg.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
             }
 //            if (orb1.hitbox.intersects(Butler.rect)) {

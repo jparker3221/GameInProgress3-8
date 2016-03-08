@@ -12,6 +12,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
@@ -21,7 +22,7 @@ import org.newdawn.slick.tiled.TiledMap;
  *
  * @author Jackson
  */
-public class Level2 {
+public class Level2 extends BasicGameState{
     public static Candy candy1, candy2;
     public static Soda soda1, soda2;
     public Player1 player1;
@@ -54,7 +55,7 @@ public class Level2 {
             throws SlickException {
         gc.setTargetFrameRate(60);
         gc.setShowFPS(false);
-        grassMap = new TiledMap("res/BattleMap2.tmx");
+        grassMap = new TiledMap("res/d4.tmx");
         camera = new Camera(gc, grassMap);
         
         
@@ -71,7 +72,7 @@ public class Level2 {
         }
         for (int xAxis = 0; xAxis < grassMap.getWidth(); xAxis++) {
             for (int yAxis = 0; yAxis < grassMap.getHeight(); yAxis++) {
-                int tileID = grassMap.getTileId(xAxis, yAxis, 3);
+                int tileID = grassMap.getTileId(xAxis, yAxis, 1);
                 String value = grassMap.getTileProperty(tileID,
                         "blocked", "false");
                 if ("true".equals(value)) {
@@ -80,7 +81,8 @@ public class Level2 {
             }
         }
         player1 = new Player1();
-        candy1 = new Candy(2335, 345);
+        player2 = new Player2();
+        /*candy1 = new Candy(2335, 345);
         candy2 = new Candy(3450, 365);
         Candyshop.add(candy1);
         Candyshop.add(candy2);
@@ -115,7 +117,7 @@ public class Level2 {
         tables.add(destroyable2b);
         tables.add(destroyable2c);
         tables.add(destroyable2d);
-        tables.add(destroyable2e);
+        */tables.add(destroyable2e);
         magic8ball = new orb((int) player1.getplayersX(), (int) player1.getplayersY());
     }
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -321,7 +323,6 @@ public class Level2 {
             if (player1.health <= 0 || player1.speed <= 0f) {
                 sbg.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
             }
-            
             player2.rect.setLocation(player2.getplayershitboxX(),
                     player2.getplayershitboxY());
             for (Candy n : Candyshop) {
@@ -399,7 +400,7 @@ public class Level2 {
         }
     
     public int getID() {
-        return 1;
+        return 4;
     }
     private boolean isBlocked(float tx, float ty) {
         int xBlock = (int) tx / SIZE;
@@ -415,4 +416,3 @@ public class Level2 {
         }
     }
 }
-
