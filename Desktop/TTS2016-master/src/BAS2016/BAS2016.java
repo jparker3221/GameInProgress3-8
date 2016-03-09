@@ -125,7 +125,7 @@ public class BAS2016 extends BasicGameState {
         tables.add(destroyable2d);
         tables.add(destroyable2e);
         */magic8ball = new orb((int) player1.getplayersX(), (int) player1.getplayersY());
-        piano.loop();
+        //piano.loop();
     }
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
             throws SlickException {
@@ -175,7 +175,7 @@ public class BAS2016 extends BasicGameState {
     }
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
             throws SlickException {
-            if(player1.counter >= 9){
+            if(player1.health <= 0){
             sbg.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
             }
             counter += delta;

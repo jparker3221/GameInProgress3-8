@@ -19,8 +19,9 @@ public class Player1 {
     public float pdelta;
     public Animation playeranime, sprite, up, down, left, right, wait;
     SpriteSheet runningSS;
+    private int direction;
     public Player1() throws SlickException {
-        this.runningSS = new SpriteSheet("res/BratSpriteSheet.png", 64, 64, 0);
+        this.runningSS = new SpriteSheet("res/Player1.png", 64, 64, 0);
 up = new Animation();
         up.setAutoUpdate(true);
         up.addFrame(runningSS.getSprite(0, 8), 110);
@@ -73,28 +74,44 @@ up = new Animation();
         wait.addFrame(runningSS.getSprite(3, 14), 733);
         sprite = wait;
     }
+    
     public void setpdelta(float somenum) {
         pdelta = somenum;
     }
+
     public float getpdelta() {
         return pdelta;
     }
+
     public float getplayersX() {
-        return this.x;
+        return x;
     }
+
     public float getplayersY() {
-        return this.y;
+        return y;
     }
+
     public float getplayershitboxX() {
         return x + 18f;
     }
+
     public float getplayershitboxY() {
         return y + 18f;
     }
+
     public void setplayershitboxX() {
         hitboxX = getplayershitboxX();
     }
+
     public void setplayershitboxY() {
         hitboxY = getplayershitboxY();
     }
+    
+    public void setDirection(int i){
+        this.direction = i;
+    }
+    public int getDirection(){
+        return this.direction;
+    }
+
 }

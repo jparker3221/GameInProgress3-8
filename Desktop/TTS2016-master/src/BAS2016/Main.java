@@ -10,8 +10,8 @@ public class Main extends StateBasedGame{
       super(gamename);
       this.addState(new Menu(xSize, ySize));
       this.addState(new BAS2016(xSize, ySize));
-      this.addState(new lose(xSize, ySize));
-      this.addState(new win(xSize, ySize));
+      this.addState(new Player2Win(xSize, ySize));
+      this.addState(new Player1Win(xSize, ySize));
       this.addState(new Level2(xSize, ySize));
    }
    public void initStatesList(GameContainer gc) throws SlickException{

@@ -1,51 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package BAS2016;
-
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
-
-
-/**
- *
- * @author jparker3221
- */
 public class Player2 {
- 
     public float x = 128f;
-
     public float y = 64f;
-
     public int health = 100000;
-
     public float speed = .4f;
-
     public int counter = 0;
-
     float hitboxX = x + 8f;
-
     float hitboxY = y + 8f;
-
     private int startX, startY, width = 30, height = 42;
-
     public Shape rect = new Rectangle(getplayershitboxX(),
             getplayershitboxY(), width, height);
-
     public float pdelta;
-
     public Animation playeranime, sprite, up, down, left, right, wait;
-
     SpriteSheet runningSS;
-
     public Player2() throws SlickException {
-        this.runningSS = new SpriteSheet("res/BratSpriteSheet.png", 64, 64, 0);
+        this.runningSS = new SpriteSheet("res/Player2.png", 64, 64, 0);
 up = new Animation();
         up.setAutoUpdate(true);
         up.addFrame(runningSS.getSprite(0, 8), 110);
@@ -98,53 +73,28 @@ up = new Animation();
         wait.addFrame(runningSS.getSprite(3, 14), 733);
         sprite = wait;
     }
-
     public void setpdelta(float somenum) {
-
         pdelta = somenum;
-
     }
-
     public float getpdelta() {
-
         return pdelta;
-
     }
-
     public float getplayersX() {
-
         return this.x;
-
     }
-
     public float getplayersY() {
-
         return this.y;
-
     }
-
     public float getplayershitboxX() {
-
         return x + 18f;
-
     }
-
     public float getplayershitboxY() {
-
         return y + 18f;
-
     }
-
     public void setplayershitboxX() {
-
         hitboxX = getplayershitboxX();
-
     }
-
     public void setplayershitboxY() {
-
         hitboxY = getplayershitboxY();
-
-    }
-   
+    }  
 }
